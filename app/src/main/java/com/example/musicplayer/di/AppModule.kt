@@ -22,8 +22,8 @@ object AppModule {
         @ApplicationContext context: Context
     )  = Glide.with(context).setDefaultRequestOptions(
         RequestOptions()
-            .placeholder(R.drawable.ic_launcher_foreground)
-            .error(R.drawable.ic_launcher_foreground)
+            .placeholder(R.drawable.ic_music)
+            .error(R.drawable.ic_error)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
     )
 }
