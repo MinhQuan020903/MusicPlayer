@@ -9,6 +9,10 @@ android {
     namespace 'com.example.musicplayer'
     compileSdk 33
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.example.musicplayer"
         minSdk 26
