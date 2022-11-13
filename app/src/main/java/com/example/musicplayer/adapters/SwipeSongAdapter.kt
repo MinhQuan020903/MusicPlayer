@@ -5,18 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.RequestManager
 import com.example.musicplayer.data.entities.Song
-import com.example.musicplayer.databinding.ListItemBinding
+import com.example.musicplayer.databinding.SwipeItemBinding
 import com.google.android.exoplayer2.util.Log
 import javax.inject.Inject
 
-class SongAdapter @Inject constructor(
-    private val glide: RequestManager
-) : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
+class SwipeSongAdapter @Inject constructor(
+) : RecyclerView.Adapter<SwipeSongAdapter.SongViewHolder>() {
 
-    lateinit var binding: ListItemBinding
-    class SongViewHolder(binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root)
+    lateinit var binding : SwipeItemBinding
+
+    class SongViewHolder(binding : SwipeItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Song>() {
         override fun areItemsTheSame(oldItem: Song, newItem: Song): Boolean {
@@ -35,7 +34,7 @@ class SongAdapter @Inject constructor(
         set(value) = differ.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
-       binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+       binding = SwipeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
        return SongViewHolder(binding)
     }
 
@@ -43,10 +42,8 @@ class SongAdapter @Inject constructor(
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = songs[position]
         holder.itemView.apply {
-            binding.tvPrimary.text = song.title
-            binding.tvSecondary.text = song.subtitle
-            glide.load(song.imageUrl).into(binding.ivItemImage)
-            Log.d("CHECKSUBTITLE","${song.imageUrl} + ${song.mediaId}  + ${song.songUrl} + ${song.subtitle} + ${song.title}")
+            val text = "${song.title} -  ${song.subtitle}"
+            binding.tvPrimary.text = text
             setOnClickListener {
                 onItemClickListener?.let { click ->
                     click(song)
@@ -60,7 +57,6 @@ class SongAdapter @Inject constructor(
     fun setItemClickListener(listener : (Song) -> Unit)  {
         onItemClickListener = listener
     }
-
     override fun getItemCount(): Int {
         return songs.size
     }

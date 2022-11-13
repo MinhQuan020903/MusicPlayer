@@ -5,6 +5,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.musicplayer.R
+import com.example.musicplayer.adapters.SwipeSongAdapter
 import com.example.musicplayer.exoplayer.MusicServiceConnection
 import dagger.Module
 import dagger.Provides
@@ -29,8 +30,8 @@ object AppModule {
         @ApplicationContext context: Context
     )  = Glide.with(context).setDefaultRequestOptions(
         RequestOptions()
-            .placeholder(R.drawable.ic_music)
-            .error(R.drawable.ic_error)
+            .placeholder(R.drawable.ic_image)
+            .error(R.drawable.ic_image)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
     )
 }
