@@ -12,7 +12,7 @@ class MusicPlayerEventListener (
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
         super.onPlayWhenReadyChanged(playWhenReady, playbackState)
         if (playbackState == Player.STATE_READY && !playWhenReady) {
-            musicService.stopForeground(false)
+            musicService.stopForeground(Service.STOP_FOREGROUND_DETACH)
         }
     }
 

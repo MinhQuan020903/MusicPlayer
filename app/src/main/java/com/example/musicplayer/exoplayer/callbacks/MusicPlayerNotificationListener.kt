@@ -15,7 +15,7 @@ class MusicPlayerNotificationListener (
     override fun onNotificationCancelled(notificationId: Int, dismissedByUser: Boolean) {
         super.onNotificationCancelled(notificationId, dismissedByUser)
         musicService.apply {
-            stopForeground(true)
+            stopForeground(Service.STOP_FOREGROUND_DETACH)
             isForegroundService = false
             stopSelf()
         }
