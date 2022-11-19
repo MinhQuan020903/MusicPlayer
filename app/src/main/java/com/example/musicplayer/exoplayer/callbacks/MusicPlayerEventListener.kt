@@ -9,10 +9,10 @@ import com.google.android.exoplayer2.Player
 class MusicPlayerEventListener (
     private val musicService : MusicService
 ) : Player.Listener {
-    override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-        super.onPlayWhenReadyChanged(playWhenReady, playbackState)
-        if (playbackState == Player.STATE_READY && !playWhenReady) {
-            musicService.stopForeground(Service.STOP_FOREGROUND_DETACH)
+    override fun onPlayWhenReadyChanged(playWhenReady: Boolean, reason: Int) {
+        super.onPlayWhenReadyChanged(playWhenReady, reason)
+        if (reason == Player.STATE_READY && !playWhenReady) {
+            musicService.stopForeground(Service.STOP_FOREGROUND_REMOVE)
         }
     }
 

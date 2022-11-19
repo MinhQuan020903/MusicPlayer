@@ -6,7 +6,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.RequestManager
 import com.example.musicplayer.R
 import com.example.musicplayer.adapters.SongAdapter
 import com.example.musicplayer.data.other.Status
@@ -18,8 +17,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private lateinit var binding : FragmentHomeBinding
-    private lateinit var mainViewModel : MainViewModel
+    lateinit var binding : FragmentHomeBinding
+    lateinit var mainViewModel : MainViewModel
 
     @Inject
     lateinit var songAdapter : SongAdapter

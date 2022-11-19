@@ -7,10 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.data.entities.Song
 import com.example.musicplayer.databinding.SwipeItemBinding
-import com.google.android.exoplayer2.util.Log
-import javax.inject.Inject
 
-class SwipeSongAdapter @Inject constructor(
+class SwipeSongAdapter (
 ) : RecyclerView.Adapter<SwipeSongAdapter.SongViewHolder>() {
 
     lateinit var binding : SwipeItemBinding
@@ -57,6 +55,7 @@ class SwipeSongAdapter @Inject constructor(
     fun setItemClickListener(listener : (Song) -> Unit)  {
         onItemClickListener = listener
     }
+
     override fun getItemCount(): Int {
         return songs.size
     }

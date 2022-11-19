@@ -1,5 +1,6 @@
 package com.example.musicplayer.exoplayer
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
@@ -29,7 +30,7 @@ private const val SERVICE_TAG = "Music Service"
 class MusicService : MediaBrowserServiceCompat() {
 
     @Inject
-    lateinit var dataSource: DefaultDataSource.Factory
+    lateinit var dataSourceFactory: DefaultDataSource.Factory
 
     @Inject
     lateinit var exoPlayer: ExoPlayer
@@ -57,6 +58,7 @@ class MusicService : MediaBrowserServiceCompat() {
             private set
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate() {
         super.onCreate()
         serviceScope.launch {
@@ -113,8 +115,8 @@ class MusicService : MediaBrowserServiceCompat() {
         playNow : Boolean
     ) {
         val curSongIndex = if (curPlayingSong == null) 0 else songs.indexOf(itemToPlay)
-        exoPlayer.setMediaSource(firebaseMusicSource.asMediaSource(dataSource))
         exoPlayer.prepare()
+        exoPlayer.setMediaSource(firebaseMusicSource.asMediaSource(dataSourceFactory))
         exoPlayer.seekTo(curSongIndex, 0L)
         exoPlayer.playWhenReady = playNow
     }
@@ -127,7 +129,6 @@ class MusicService : MediaBrowserServiceCompat() {
     override fun onDestroy() {
         super.onDestroy()
         serviceScope.cancel()
-
         exoPlayer.removeListener(musicPlayerEventListener)
         exoPlayer.release()
     }
@@ -136,7 +137,7 @@ class MusicService : MediaBrowserServiceCompat() {
         clientPackageName: String,
         clientUid: Int,
         rootHints: Bundle?
-    ): BrowserRoot? {
+    ): BrowserRoot {
         return BrowserRoot(MEDIA_ROOT_ID, null)
     }
 

@@ -32,7 +32,7 @@ class FirebaseMusicSource @Inject constructor(
         for(i in 0 until allSongs.size - 1) {
             for (j in i + 1 until allSongs.size) {
                 if (allSongs[j].mediaId.toInt() < allSongs[i].mediaId.toInt()) {
-                    val songTemp = allSongs[i]
+                    var songTemp = allSongs[i]
                     allSongs[i] = allSongs[j]
                     allSongs[j] = songTemp
                 }

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.bumptech.glide.RequestManager
-import com.example.musicplayer.R
 import com.example.musicplayer.adapters.SwipeSongAdapter
 import com.example.musicplayer.data.entities.Song
 import com.example.musicplayer.data.other.Status
@@ -32,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.vpSong.adapter = swipeSongAdapter
         subscribeToObservers()
+        binding.vpSong.adapter = swipeSongAdapter
     }
 
     private fun switchViewPagerToCurrentSong(song : Song) {
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                         result.data?.let { songs ->
                             swipeSongAdapter.songs = songs
                             if (songs.isNotEmpty()) {
-                                glide.load(curPlayingSong ?: songs[0].imageUrl)
+                                glide.load((curPlayingSong ?: songs[0]).imageUrl)
                                     .into(binding.ivCurSongImage)
                             }
                             switchViewPagerToCurrentSong(curPlayingSong ?: return@observe)
