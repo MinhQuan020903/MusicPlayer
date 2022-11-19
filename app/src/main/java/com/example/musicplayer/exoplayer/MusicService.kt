@@ -1,6 +1,5 @@
 package com.example.musicplayer.exoplayer
 
-import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
@@ -58,7 +57,6 @@ class MusicService : MediaBrowserServiceCompat() {
             private set
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate() {
         super.onCreate()
         serviceScope.launch {
@@ -137,7 +135,7 @@ class MusicService : MediaBrowserServiceCompat() {
         clientPackageName: String,
         clientUid: Int,
         rootHints: Bundle?
-    ): BrowserRoot {
+    ): BrowserRoot? {
         return BrowserRoot(MEDIA_ROOT_ID, null)
     }
 

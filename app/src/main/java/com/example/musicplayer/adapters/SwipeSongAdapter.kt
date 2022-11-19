@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicplayer.data.entities.Song
 import com.example.musicplayer.databinding.SwipeItemBinding
+import javax.inject.Inject
 
-class SwipeSongAdapter (
+class SwipeSongAdapter @Inject constructor(
 ) : RecyclerView.Adapter<SwipeSongAdapter.SongViewHolder>() {
 
     lateinit var binding : SwipeItemBinding
