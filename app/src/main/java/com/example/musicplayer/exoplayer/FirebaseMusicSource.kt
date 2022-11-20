@@ -29,15 +29,6 @@ class FirebaseMusicSource @Inject constructor(
 
     suspend fun getAllSongs() = withContext(Dispatchers.IO) {
         val allSongs = musicDatabase.getAllSongs().toMutableList()
-        for(i in 0 until allSongs.size - 1) {
-            for (j in i + 1 until allSongs.size) {
-                if (allSongs[j].mediaId.toInt() < allSongs[i].mediaId.toInt()) {
-                    var songTemp = allSongs[i]
-                    allSongs[i] = allSongs[j]
-                    allSongs[j] = songTemp
-                }
-            }
-        }
         songs = allSongs.map { song->
             Builder()
                 .putString(METADATA_KEY_ARTIST, song.subtitle)

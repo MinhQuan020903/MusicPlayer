@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.bumptech.glide.RequestManager
 import com.example.musicplayer.R
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var  binding : ActivityMainBinding
     private val mainViewModel : MainViewModel by viewModels()
+    private var curPlayingSong : Song? = null
+    private var playbackState : PlaybackStateCompat? = null
 
     @Inject
     lateinit var swipeSongAdapter: SwipeSongAdapter
@@ -31,15 +36,15 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var glide : RequestManager
 
-    private var curPlayingSong : Song? = null
-    private var playbackState : PlaybackStateCompat? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         subscribeToObservers()
         binding.vpSong.adapter = swipeSongAdapter
+
         binding.vpSong.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -57,6 +62,36 @@ class MainActivity : AppCompatActivity() {
                 mainViewModel.playOrToggleSong(it, true)
             }
         }
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        swipeSongAdapter.setItemClickListener {
+            navController.navigate(
+                R.id.globalActionToSongFragment
+            )
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id) {
+                R.id.songFragment -> hideBottomBar()
+                R.id.homeFragment -> showBottomBar()
+                else -> showBottomBar()
+            }
+        }
+
+    }
+
+    private fun hideBottomBar() {
+        binding.ivCurSongImage.isVisible = false
+        binding.vpSong.isVisible = false
+        binding.ivPlayPause.isVisible = false
+    }
+
+    private fun showBottomBar() {
+        binding.ivCurSongImage.isVisible = true
+        binding.vpSong.isVisible = true
+        binding.ivPlayPause.isVisible = true
     }
 
     private fun switchViewPagerToCurrentSong(song : Song) {
