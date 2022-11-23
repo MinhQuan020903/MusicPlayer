@@ -5,19 +5,19 @@
 ### **[Home UI]**
 
 <p align=center>
-<img src="https://user-images.githubusercontent.com/91861930/203512049-fce465eb-e3a5-46df-8fc8-7ada44591f19.png" width="400">
+<img src="https://user-images.githubusercontent.com/91861930/203512049-fce465eb-e3a5-46df-8fc8-7ada44591f19.png" width="300">
 </p>
 
 ### [Song Description UI]
 
 <p align=center>
-<img src="https://user-images.githubusercontent.com/91861930/203513736-ec144c5e-2806-41ea-a8f5-2761dc52c70e.png" width="400">
+<img src="https://user-images.githubusercontent.com/91861930/203513736-ec144c5e-2806-41ea-a8f5-2761dc52c70e.png" width="300">
 </p>
 
 ### [App running in the background]
 
 <p align=center>
-<img src="https://user-images.githubusercontent.com/91861930/203514810-f3882382-3b7e-4787-9ad5-3a97b2c18f31.png" width="400">
+<img src="https://user-images.githubusercontent.com/91861930/203514810-f3882382-3b7e-4787-9ad5-3a97b2c18f31.png" width="300">
 </p>
 
 
