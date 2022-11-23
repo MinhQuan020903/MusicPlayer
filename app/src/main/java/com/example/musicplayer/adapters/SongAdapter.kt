@@ -46,7 +46,6 @@ class SongAdapter @Inject constructor(
             binding.tvPrimary.text = song.title
             binding.tvSecondary.text = song.subtitle
             glide.load(song.imageUrl).into(binding.ivItemImage)
-            Log.d("CHECKSUBTITLE","${song.imageUrl} + ${song.mediaId}  + ${song.songUrl} + ${song.subtitle} + ${song.title}")
             setOnClickListener {
                 onItemClickListener?.let { click ->
                     click(song)

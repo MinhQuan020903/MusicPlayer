@@ -8,10 +8,15 @@ import com.example.musicplayer.data.other.Constants.UPDATE_PLAYER_POSITION_INTER
 import com.example.musicplayer.exoplayer.MusicService
 import com.example.musicplayer.exoplayer.MusicServiceConnection
 import com.example.musicplayer.exoplayer.currentPlaybackPosition
+import com.google.android.exoplayer2.C
+import com.google.android.exoplayer2.ExoPlayer
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SongViewModel @Inject constructor(
     musicServiceConnection: MusicServiceConnection
 ) : ViewModel() {
