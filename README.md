@@ -1,4 +1,5 @@
-# <p align=center>  **KOTLIN MUSIC PLAYER** </p> <p align=center>This is my first ever Android Kotlin project, a basic music player app</p>
+# <p align=center>  **KOTLIN MUSIC PLAYER** </p>
+## <p align=center>This is my first ever Android Kotlin project, a basic music player app</p>
 
 ## Preview
 ### **[Home UI]**
